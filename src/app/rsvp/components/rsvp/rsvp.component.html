@@ -1,3 +1,16 @@
-<p>
-	rsvp works!
-</p>
+<h2>Confirma tu asistencia</h2>
+
+<input type="text" (keyup)="search($event)" placeholder="Busca tu nombre">
+
+<div *ngIf="showInvited">
+    <ul class="invited-list">
+        <li *ngFor="let invited of invitedPeople">
+            <p>{{ invited.name }}</p>
+            <button mat-button>Seleccionar</button>
+        </li>
+    </ul>
+</div>
+
+<div *ngIf="invitedPeople?.length < 1">
+    <p>No se encontraron resultados, vuelve a intentarlo.</p>
+</div>

@@ -1,2 +1,8 @@
 // Vendors 
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
+
+// Helpers
+@import 'assets/scss/helpers/variables';
+
+// Base 
+@import 'assets/scss/base/general';

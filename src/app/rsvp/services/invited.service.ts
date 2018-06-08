@@ -1,24 +1,29 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection } from 'angularfire2/firestore';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-
+import 'rxjs/add/operator/map';
 
 
 @Injectable({
-	providedIn: 'root'
+    providedIn: 'root'
 })
 
 
 export class InvitedService {
-	public invitedRef: AngularFirestoreCollection<any>;
-	public invited$: Observable<any>;
+    public invitedRef: AngularFirestoreCollection<any>;
+    public invited$: Observable<any>;
 
-	constructor( private afs: AngularFirestore ) { }
+    constructor( private afs: AngularFirestore ) { }
 
-	getInvitedList() {
-		this.invitedRef = this.afs.collection('invited');
-		this.invited$ = this.invitedRef.valueChanges();
-		return this.invited$;
-	}
+    getInvitedList( start, end) {
+        this.invitedRef = this.afs.collection('invited', ref => ref.orderBy('name').startAt( start ).endAt( end+'\uf8ff' ) );
+
+        return this.invitedRef.snapshotChanges().map(actions => {
+            return actions.map( a => {
+                const data = a.payload.doc.data();
+                const id = a.payload.doc.id;
+                return { id, ...data };
+            });
+        });
+    }
 }
