@@ -4,13 +4,15 @@
 
 <div *ngIf="showInvited">
     <ul class="invited-list">
-        <li *ngFor="let invited of invitedPeople">
+        <li *ngFor="let invited of invitedList">
             <p>{{ invited.name }}</p>
-            <button mat-button>Seleccionar</button>
+            <button mat-button (click)="selectInvited( invited.id )">Seleccionar</button>
         </li>
     </ul>
 </div>
 
-<div *ngIf="invitedPeople?.length < 1">
+<div *ngIf="invitedList?.length < 1">
     <p>No se encontraron resultados, vuelve a intentarlo.</p>
 </div>
+
+<invited-info *ngIf="loadInvitedInfo" [invitedId]="invitedId"></invited-info>

@@ -16,7 +16,7 @@ export class InvitedService {
     constructor( private afs: AngularFirestore ) { }
 
     getInvitedList( start, end) {
-        this.invitedRef = this.afs.collection('invited', ref => ref.orderBy('name').startAt( start ).endAt( end+'\uf8ff' ) );
+        this.invitedRef = this.afs.collection( 'invited', ref => ref.orderBy( 'name' ).startAt( start ).endAt( end + '\uf8ff' ) );
 
         return this.invitedRef.snapshotChanges().map(actions => {
             return actions.map( a => {
@@ -25,5 +25,9 @@ export class InvitedService {
                 return { id, ...data };
             });
         });
+    }
+
+    getInvited( id ) {
+        return this.afs.doc( 'invited/' + id );
     }
 }
