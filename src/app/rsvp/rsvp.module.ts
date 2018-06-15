@@ -23,6 +23,9 @@ import { InvitedInfoComponent } from './components/invited-info/invited-info.com
     ],
     providers: [
         InvitedService
+    ],
+    entryComponents: [
+        InvitedInfoComponent
     ]
 })
 

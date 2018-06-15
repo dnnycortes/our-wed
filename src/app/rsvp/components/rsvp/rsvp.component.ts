@@ -1,6 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { InvitedService } from '../../services/invited.service';
+
+import { MatDialog } from '@angular/material/dialog';
 import { Subject } from 'rxjs';
+
+import { InvitedService } from '../../services/invited.service';
+import { InvitedInfoComponent } from '../invited-info/invited-info.component';
 
 
 @Component({
@@ -20,7 +24,7 @@ export class RsvpComponent implements OnInit {
     public loadInvitedInfo: boolean;
 
 
-    constructor( private invitedService: InvitedService ) { }
+    constructor( private invitedService: InvitedService, private dialog: MatDialog ) { }
 
 
     ngOnInit() {
@@ -43,6 +47,14 @@ export class RsvpComponent implements OnInit {
     selectInvited( id ) {
         this.invitedId = id;
         this.loadInvitedInfo = true;
+    }
+
+
+    openInvitedInfo( id ): void {
+        const dialogRef = this.dialog.open( InvitedInfoComponent, {
+            width: '400px',
+            data: { id }
+        });
     }
 
 
