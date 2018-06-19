@@ -4,15 +4,13 @@
 
 <div *ngIf="showInvited">
     <ul class="invited-list">
-        <li *ngFor="let invited of invitedList">
+        <li *ngFor="let invited of invitedList$ | async">
             <p>{{ invited.name }}</p>
             <button mat-button (click)="openInvitedInfo( invited.id )">Seleccionar</button>
         </li>
     </ul>
 </div>
 
-<div *ngIf="invitedList?.length < 1">
+<div *ngIf="(invitedList$ | async)?.length < 1">
     <p>No se encontraron resultados, vuelve a intentarlo.</p>
 </div>
-
-<!--<invited-info *ngIf="loadInvitedInfo" [invitedId]="invitedId"></invited-info>-->

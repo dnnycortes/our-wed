@@ -1,4 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Inject } from '@angular/core';
+
+import { MAT_DIALOG_DATA } from '@angular/material';
+import { Observable } from 'rxjs';
+
 import { InvitedService } from '../../services/invited.service';
 
 
@@ -11,26 +15,22 @@ import { InvitedService } from '../../services/invited.service';
 
 export class InvitedInfoComponent implements OnInit {
 
-    @Input('invitedId') invitedId: string;
-    private invitedInfo: object;
+    private invitedInfo$: Observable<any>;
 
 
-    constructor( private invitedService: InvitedService ) { }
+    constructor(
+        @Inject( MAT_DIALOG_DATA ) public data: any,
+        private invitedService: InvitedService
+    ) { }
 
 
     ngOnInit() {
-        console.log( this.invitedId );
-        this.getInvited( this.invitedId );
+        this.getInvited( this.data.id );
     }
 
 
     getInvited( id ) {
-        this.invitedService.getInvited( id )
-            .valueChanges()
-            .subscribe( invited => {
-                this.invitedInfo = invited;
-                console.log(this.invitedInfo);
-            });
+        this.invitedInfo$ = this.invitedService.getInvited( id ).valueChanges();
     }
 
 }
