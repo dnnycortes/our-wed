@@ -38,7 +38,7 @@ export class RsvpComponent implements OnInit {
 
     openInvitedInfo( id ): void {
         const dialogRef = this.dialog.open( InvitedInfoComponent, {
-            width: '400px',
+            width: '500px',
             data: { id }
         });
     }
