@@ -1,0 +1,14 @@
+@import "../../../../assets/scss/helpers/variables";
+
+:host {
+
+    footer {
+        background: $sec-color;
+        padding: $padding;
+
+        p {
+            color: $main-color;
+            text-align: center;
+        }
+    }
+}
