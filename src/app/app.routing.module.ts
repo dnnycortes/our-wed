@@ -15,6 +15,10 @@ const routes: Routes = [
 	{
 		path: 'rsvp',
 		loadChildren: './rsvp/rsvp.module#RsvpModule'
+	},
+	{
+		path: 'transactions',
+		loadChildren: './transactions/transactions.module#TransactionsModule'
 	}
 ];
 

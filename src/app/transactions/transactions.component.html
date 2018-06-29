@@ -1,0 +1,14 @@
+<div>
+  <ul class="transactions-list">
+      <li *ngFor="let transaction of transactionsList$ | async">
+          <p>{{ transaction.concept }}</p>
+          <p>{{ transaction.quantity }}</p>
+          <button mat-button>Edit</button>
+          <button mat-button>Delete</button>
+      </li>
+  </ul>
+</div>
+
+<div *ngIf="(transactionsList$ | async)?.length < 1">
+  <p>No se encontraron resultados, vuelve a intentarlo.</p>
+</div>
