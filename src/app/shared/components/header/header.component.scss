@@ -1,0 +1,76 @@
+@import "../../../../assets/scss/helpers/variables";
+
+:host {
+
+    header {
+        border-bottom: 1px solid rgba( 255, 255, 255, 0.5 );
+        left: 0;
+        margin: 0 auto;
+        max-width: 1200px;
+        position: fixed;
+        right: 0;
+        z-index: 2;
+
+        button {
+            cursor: pointer;
+            display: none;
+        }
+
+        nav {
+
+            ul {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: space-around;
+                list-style: none;
+                margin: 0;
+                padding: 0;
+
+                li {
+
+                    a {
+                        color: white;
+                        display: block;
+                        line-height: 75px;
+                        text-decoration: none;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and ( max-width: $medium ) {
+    :host {
+
+        header {
+            display: flex;
+            flex-wrap: wrap;
+
+            button {
+                background: none;
+                border: 0;
+                color: white;
+                display: block;
+                margin-left: auto;
+            }
+
+            nav {
+                display: none;
+                width: 100%;
+
+                ul {
+
+                    li {
+                        text-align: center;
+                        width: 100%;
+                    }
+                }
+
+                &.active {
+                    display: block;
+                }
+            }
+        }
+    }
+}
