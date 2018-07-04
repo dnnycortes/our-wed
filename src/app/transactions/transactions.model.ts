@@ -4,7 +4,7 @@ interface Event {
     name: string
 }
 
-export interface transaction {
+export interface TransactionInterface {
     type?: transactionType
     date?: Date;
     event: Event;

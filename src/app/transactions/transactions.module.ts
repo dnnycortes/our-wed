@@ -5,13 +5,14 @@ import { TransactionsComponent } from './transactions.component';
 import { TransactionsRouting } from './transactions.routing';
 import { TransactionsService } from './transactions.service';
 import { MaterialModule } from '../shared/modules/material.module';
-
+import { FormsModule } from '@angular/forms';
 @NgModule({
   imports: [
     CommonModule,
     TransactionsRouting,
     AngularFirestoreModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule
   ],
   declarations: [TransactionsComponent],
   providers: [

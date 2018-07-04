@@ -27,4 +27,24 @@ export class TransactionsService {
   getInvited( id ) {
       return this.afs.doc( 'transactions/' + id );
   }
+
+  createTransaction(newTransaction = {}){
+    // Add a new document in collection "cities"
+    this.afs.collection("transactions").add(newTransaction)
+        .then(function(docRef) {
+            console.log("Document successfully written!",docRef);
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+  }
+
+  deleteTransaction(transactionId){
+    // Add a new document in collection "cities"
+    this.afs.collection("transactions").doc(transactionId).delete().then(function() {
+        console.log("Document successfully deleted!");
+    }).catch(function(error) {
+        console.error("Error removing document: ", error);
+    });
+  }
 }
