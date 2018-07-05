@@ -27,10 +27,22 @@ export class TransactionsService {
   getInvited( id ) {
       return this.afs.doc( 'transactions/' + id );
   }
+  saveTransaction(transaction) {
+    if(transaction.id){
+        return this.afs.collection("transactions").doc(transaction.id).set(transaction)
+        .then(function(docRef) {
+            console.log("Document successfully written!",docRef);
+        })
+        .catch(function(error) {
+            console.error("Error writing document: ", error);
+        });
+    }
+    return this.createTransaction(transaction);
+  }
 
   createTransaction(newTransaction = {}){
     // Add a new document in collection "cities"
-    this.afs.collection("transactions").add(newTransaction)
+    return this.afs.collection("transactions").add(newTransaction)
         .then(function(docRef) {
             console.log("Document successfully written!",docRef);
         })
@@ -41,7 +53,7 @@ export class TransactionsService {
 
   deleteTransaction(transactionId){
     // Add a new document in collection "cities"
-    this.afs.collection("transactions").doc(transactionId).delete().then(function() {
+    return this.afs.collection("transactions").doc(transactionId).delete().then(function() {
         console.log("Document successfully deleted!");
     }).catch(function(error) {
         console.error("Error removing document: ", error);

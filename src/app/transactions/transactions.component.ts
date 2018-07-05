@@ -14,33 +14,50 @@ export class TransactionsComponent implements OnInit {
   private transactionsList$: Observable<any>;
   private _startAt: String = '';
   private _endAt: String = this._startAt + '\uf8ff';
-  transactionEntity;
-  constructor( private transactionsService: TransactionsService, private dialog: MatDialog ) { }
+  private transactionEntity;
+  public showLoader: boolean = false;
+  constructor( private transactionsService: TransactionsService, private dialog: MatDialog ) {
 
-
-  ngOnInit(): void {
-      this.transactionEntity = { typeTransaction: 'Incomming', event:''};
-      this.getTransactionsList( this._startAt, this._endAt );
   }
 
+  ngOnInit(): void {
+      this._initializeTransaction();
+      this.getTransactionsList( this._startAt, this._endAt );
+  }
 
   getTransactionsList( start, end ): void {
       this.transactionsList$ = this.transactionsService.getTransactionsList( start, end );
   }
 
-  onCreateClick() {
-    this.addTransaction();
+  onSaveClick() {
+    this._saveTransaction(this.transactionEntity);
   }
 
   onDeleteClick(transactionId) {
-    this.removeTransaction(transactionId);
+    this._removeTransaction(transactionId);
   }
 
-  addTransaction():void {
-    this.transactionsService.createTransaction( {concept:'Second Test', quantity:10 } );
+  onEditClick(transaction) {
+    this.transactionEntity = transaction;
   }
 
-  removeTransaction(transactionId):void {
+  private _initializeTransaction() {
+    this.transactionEntity = { typeTransaction: 'Incomming', event:'', concept: '', quantity: 0};
+  }
+
+  private _saveTransaction(transaction):void {
+    this.showLoader = true;
+    this.transactionsService.saveTransaction(transaction).then(() => {
+      console.log("Document successfully deleted From Component!");
+      this.showLoader = false;
+      this._initializeTransaction();
+  }).catch(function(error) {
+      this.showLoader = false;
+      console.error("Error removing document From component: ", error);
+  });
+  }
+
+  private _removeTransaction(transactionId):void {
     this.transactionsService.deleteTransaction( transactionId );
   }
 }
