@@ -15,13 +15,11 @@ import { Observable } from 'rxjs';
 
 
 export class RsvpComponent implements OnInit {
-    private invitedList$: Observable<any>;
     private startAt: String = '';
     private endAt: String = this.startAt + '\uf8ff';
     private lastKeyPress: any = 0;
-    private showInvited: boolean;
-
-
+    invitedList$: Observable<any>;
+    showInvited: boolean;
     constructor( private invitedService: InvitedService, private dialog: MatDialog ) { }
 
 
