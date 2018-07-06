@@ -9,10 +9,11 @@ import { Observable } from 'rxjs';
   styleUrls: ['./transactions.component.scss']
 })
 export class TransactionsComponent implements OnInit {
-  private transactionsList$: Observable<any>;
+  transactionsList$: Observable<any>;
   private _startAt: String = '';
   private _endAt: String = this._startAt + '\uf8ff';
-
+  transactionEntity;
+  public showLoader: boolean = false;
   constructor( private transactionsService: TransactionsService, private dialog: MatDialog ) { }
 
 

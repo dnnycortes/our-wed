@@ -15,7 +15,7 @@ import { InvitedService } from '../../services/invited.service';
 
 export class InvitedInfoComponent implements OnInit {
 
-    private invitedInfo$: Observable<any>;
+    invitedInfo$: Observable<any>;
 
 
     constructor(

@@ -1,8 +1,10 @@
 <header>
-    <button (click)="showNav = !showNav">
+    <!--button (click)="showNav = !showNav"-->
+    <button>
         <i class="material-icons">menu</i>
     </button>
-    <nav [class.active]="showNav">
+    <!--nav [class.active]="showNav"-->
+    <nav>
         <ul>
             <li *ngFor="let menu of _menuItems">
                 <a routerLink="{{ menu.link }}"> {{ menu.label }} </a>
