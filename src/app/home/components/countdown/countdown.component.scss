@@ -1,0 +1,61 @@
+@import "../../../../assets/scss/helpers/variables";
+
+:host {
+
+    .countdown {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        margin: 0 auto;
+        margin-top: $margin * 4;
+        max-width: 700px;
+
+        .count {
+            align-content: center;
+            background: #eae9e9;
+            border-radius: 5px;
+            color: $main-color;
+            display: flex;
+            flex-wrap: wrap;
+            height: 112px;
+            min-width: 137px;
+            text-align: center;
+
+            .label, .number {
+                width: 100%;
+            }
+
+            .number {
+                font-family: $highlight-font;
+                font-size: 35px;
+            }
+
+            .label {
+                display: inline-block;
+                font-family: $text-font;
+                font-size: 16px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $small) {
+    :host {
+
+        .countdown {
+            margin-top: 35px;
+
+            .count {
+                min-width: 70px;
+
+                p {
+                    font-size: 19px;
+                }
+
+                span {
+                    font-size: 13px;
+                }
+            }
+        }
+    }
+}
