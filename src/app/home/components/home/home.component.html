@@ -1,14 +1,15 @@
-<header-component></header-component>
+<header-component (submitted)="scrollTo($event)"></header-component>
 
 <div class="cover">
-    <p>
+    <p class="subtitle">Nos casamos</p>
+    <p class="title">
         Dany y James
         <span class="ornament"></span>
     </p>
     <div class="overlay"></div>
 </div>
 
-<section class="save-the-date">
+<section class="save-the-date" #saveTheDate>
     <div class="container">
         <img src="assets/imgs/flowers-deco-1.png" alt="">
         <h2>Reserva la fecha</h2>
@@ -19,7 +20,7 @@
     </div>
 </section>
 
-<section class="wedding-details">
+<section class="wedding-details" #location>
     <div class="container">
         <img src="assets/imgs/flowers-deco-2.png" alt="">
         <h2>Detalles de la boda</h2>
@@ -30,7 +31,7 @@
                 <p>Te esperamos a celebrar nuestro enlace matrimonial por la iglesia</p>
                 <p class="where"> <i class="material-icons">location_on</i> Catedral Corpus Christi de Tlalnepantla</p>
                 <p class="time"> <i class="material-icons">watch_later</i> 16:00 h</p>
-                <a href="javascript:void(0)">¿Cómo llegar?</a>
+                <a href="https://goo.gl/maps/g4aJJs5isrF2" target="_blank">¿Cómo llegar?</a>
             </div>
             <div class="detail reception">
                 <img src="assets/imgs/hacienda-san-andres.png" alt="">
@@ -38,7 +39,7 @@
                 <p>Después de nuestra misa acompáñanos a festejar esta nueva etapa</p>
                 <p class="where"> <i class="material-icons">location_on</i> Hacienda San Andrés</p>
                 <p class="time"> <i class="material-icons">watch_later</i> 18:00 h</p>
-                <a href="javascript:void(0)">¿Cómo llegar?</a>
+                <a href="https://goo.gl/maps/dXfvajwyPR62" target="_blank">¿Cómo llegar?</a>
             </div>
         </div>
     </div>

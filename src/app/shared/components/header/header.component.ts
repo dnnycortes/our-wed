@@ -1,12 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Output, EventEmitter, OnInit } from '@angular/core';
 
 
 const MENU_ITEMS: Array<Object> = [
-    { label: 'Home', link: '' },
-    { label: 'Celebración', link: '' },
-    { label: 'Confirma tu asistencia', link:'/rsvp' },
-    { label: 'Mesa de regalos', link:'' },
-    { label: 'Contacto', link:'' },
+    { label: 'Home', alias: 'home' },
+    { label: 'Fecha', alias: 'save-the-date' },
+    { label: 'Lugar', alias:'location' }
 ];
 
 
@@ -19,12 +17,35 @@ const MENU_ITEMS: Array<Object> = [
 
 export class HeaderComponent implements OnInit {
     public _menuItems: Array<Object>;
+    public changeClass: boolean;
+    public showNav: boolean;
+
+    @Output() submitted: EventEmitter<any> = new EventEmitter<any>();
 
     constructor() { 
         this._menuItems = MENU_ITEMS;
     }
 
     ngOnInit() {
+        this.changeHeaderClass();
+    }
+
+    onScroll( value ) {
+        this.submitted.emit( value );
+    }
+
+    changeHeaderClass() {
+        window.addEventListener('scroll', (e) => {
+            if ( window.pageYOffset > 750 ) {
+                this.changeClass = true;
+            } else {
+                this.changeClass = false;
+            }
+        });
+    }
+
+    showHideNav() {
+        this.showNav = !this.showNav;
     }
 
 }

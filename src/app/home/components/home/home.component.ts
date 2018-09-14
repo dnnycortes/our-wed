@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 
 @Component({
@@ -8,4 +8,18 @@ import { Component } from '@angular/core';
 })
 
 
-export class HomeComponent { }
+export class HomeComponent {
+    @ViewChild('saveTheDate') saveTheDate: ElementRef;
+    @ViewChild('location') location: ElementRef;
+
+    scrollTo( event ) {
+        switch ( event ) {
+            case 'save-the-date':
+                this.saveTheDate.nativeElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+                break;
+            case 'location':
+                this.location.nativeElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+                break;
+        }
+    }
+}
