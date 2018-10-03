@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 
 
 @Component({
@@ -8,7 +8,9 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 })
 
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+    public ceremony: String;
+    public reception: String;
     @ViewChild('saveTheDate') saveTheDate: ElementRef;
     @ViewChild('location') location: ElementRef;
 
@@ -21,5 +23,10 @@ export class HomeComponent {
                 this.location.nativeElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
                 break;
         }
+    }
+
+    ngOnInit() {
+        this.ceremony = 'https://goo.gl/maps/g4aJJs5isrF2';
+        this.reception = 'https://goo.gl/maps/dXfvajwyPR62';
     }
 }
