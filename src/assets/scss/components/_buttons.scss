@@ -1,0 +1,21 @@
+button {
+    background: $main-color;
+    border: 0;
+    border-radius: 4px;
+    color: white;
+    cursor: pointer;
+    font-size: 15px;
+    padding: 10px $padding;
+
+    &.btn-cancel {
+        background: lighten( $text-color, 50% );
+
+        &:hover {
+            background: lighten( $text-color, 40% );
+        }
+    }
+
+    &:hover {
+        background: darken( $main-color, 10% );
+    }
+}

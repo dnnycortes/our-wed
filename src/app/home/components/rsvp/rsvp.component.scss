@@ -1,0 +1,109 @@
+@import "../../../../assets/scss/helpers/variables";
+
+:host {
+
+    > div {
+        align-items: center;
+        display: flex;
+        height: 700px;
+        background: {
+            color: $secondary-color;
+            image: url('/assets/imgs/background-rsvp.png');
+            position: 50%;
+            repeat: no-repeat;
+        }
+        justify-content: center;
+        padding: $padding * 3 $padding;
+    }
+
+    .rsvp {
+        background: white;
+        border-radius: 4px;
+        height: 470px;
+        max-width: 375px;
+        padding: $padding * 2;
+        text-align: center;
+
+        h2 {
+            font-family: $logo-font;
+            font-size: 45px;
+            margin: 0;
+            margin-bottom: $margin;
+        }
+
+        p {
+            margin: 0;
+            margin-bottom: $margin * 2;
+        }
+
+        .form-group {
+            display: flex;
+            flex-wrap: wrap;
+            text-align: left;
+            margin-bottom: 10px;
+            width: 100%;
+
+            label, input {
+                width: 100%;
+            }
+
+            label {
+                margin-bottom: $margin;
+            }
+        }
+
+        button {
+            align-items: center;
+            display: flex;
+            margin: 0 auto;
+        }
+    }
+
+    .confirmation {
+
+        .btn-back {
+            align-items: center;
+            color: $main-color;
+            cursor: pointer;
+            display: flex;
+        }
+
+        h3 {
+            color: $main-color;
+            font-size: 19px;
+            margin-top: 0;
+        }
+
+        span {
+            background: url('/assets/imgs/line-bottom-dark.png');
+            background-size: 100% auto;
+            display: block;
+            margin: 0 auto;
+            margin-bottom: 15px;
+            height: 25px;
+            width: 155px;
+        }
+
+        .form-group {
+            margin-bottom: $margin;
+
+            select {
+                width: 100%;
+            }
+
+            textarea {
+                max-height: 65px;
+                resize: none;
+                width: 100%;
+            }
+        }
+
+        .actions {
+            display: flex;
+
+            button {
+                margin: 0 2px;
+            }
+        }
+    }
+}

@@ -1,10 +1,11 @@
-import { Component, Output, EventEmitter, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 
 const MENU_ITEMS: Array<Object> = [
     { label: 'Home', alias: 'home' },
     { label: 'Fecha', alias: 'save-the-date' },
-    { label: 'Lugar', alias:'location' }
+    { label: 'Lugar', alias:'location' },
+    { label: 'RSVP', alias: 'rsvp' }
 ];
 
 
