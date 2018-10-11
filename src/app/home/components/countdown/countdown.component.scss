@@ -39,6 +39,18 @@
     }
 }
 
+@media screen and (max-width: $medium) {
+    :host {
+
+        .countdown {
+
+            .count {
+                min-width: 100px;
+            }
+        }
+    }
+}
+
 @media screen and (max-width: $small) {
     :host {
 
@@ -46,14 +58,14 @@
             margin-top: 35px;
 
             .count {
-                min-width: 70px;
+                min-width: 50px;
 
-                p {
-                    font-size: 19px;
+                .number {
+                    font-size: 20px;
                 }
 
-                span {
-                    font-size: 13px;
+                .label {
+                    font-size: 15px;
                 }
             }
         }
