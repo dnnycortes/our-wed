@@ -1,13 +1,10 @@
-<header>
-    <!--button (click)="showNav = !showNav"-->
-    <button>
-        <i class="material-icons">menu</i>
-    </button>
-    <!--nav [class.active]="showNav"-->
-    <nav>
+<header [ngClass]="{'light': changeClass}">
+    <h1>Dany y James</h1>
+    <button (click)="showHideNav()"><i class="material-icons">menu</i></button>
+    <nav [class.active]="showNav">
         <ul>
             <li *ngFor="let menu of _menuItems">
-                <a routerLink="{{ menu.link }}"> {{ menu.label }} </a>
+                <a (click)="onScroll(menu.alias)"> {{ menu.label }} </a>
             </li>
         </ul>
     </nav>
