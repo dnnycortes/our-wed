@@ -1,0 +1,33 @@
+<div>
+    <div class="rsvp">
+        <h2>Acompáñanos</h2>
+        <slide-panel [activePane]="isVisible ? 'left' : 'right'" >
+            <div leftPane class="wedding-code">
+                <div class="form-group">
+                    <label>Código de la boda</label>
+                    <input type="text" [(ngModel)]="weddingCode">
+                </div>
+                <div #entry></div>
+                <button (click)="validate()">Siguiente <i class="material-icons">keyboard_arrow_right</i></button>
+            </div>
+            <div rightPane class="confirmation">
+                <h3>{{ invitedGroup$?.group }}</h3>
+                <span></span>
+                <div class="form-group">
+                    <label>¿Cuántos invitados asistirán?</label>
+                    <select>
+                        <option *ngFor="let invited of numberOfInvited"> {{ invited }}</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Déjanos una nota</label>
+                    <textarea name="" id="" cols="30" rows="10"></textarea>
+                </div>
+                <div class="actions">
+                    <button class="btn-cancel">Lo siento, no podré asistir</button>
+                    <button>Confirmar asistencia</button>
+                </div>
+            </div>
+        </slide-panel>
+    </div>
+</div>

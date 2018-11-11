@@ -20,6 +20,20 @@ p {
     margin: 0;
 }
 
+input[type="text"], textarea, select {
+    border: 1px solid lighten( $text-color, 50% );
+    border-radius: 4px;
+    line-height: 20px;
+    padding: 10px;
+}
+
+select {
+    appearance: none;
+    background: url('/assets/imgs/icon-dropdown.png') white no-repeat 97% 50%;
+    height: 45px;
+    -webkit-appearance: none;
+}
+
 
 @media screen and (max-width: $small) {
 
