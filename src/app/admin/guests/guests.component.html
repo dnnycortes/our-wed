@@ -1,0 +1,69 @@
+<header-component (submitted)="scrollTo($event)"></header-component>
+<div *ngIf="showLoader">
+    <p>Cargando...</p>
+</div>
+<section class="content-page new-element">
+  <form #f="ngForm" (ngSubmit)="onSubmitNewGuest(f)" novalidate>
+    <fieldset>
+      <div class="control-group">
+        <label class="control-label" for="group">
+          Familia
+        </label>
+        <div class="controls">
+          <input ngModel type="text" name="group" placeholder="" class="input-xlarge" required minlength="4" #group="ngModel">
+          <div *ngIf="group.invalid && (group.dirty || group.touched)" class="alert alert-danger">
+            <div *ngIf="group.errors.required">
+              Group is required.
+            </div>
+            <div *ngIf="group.errors.minlength">
+              Please enter a valid group
+            </div>
+          </div>
+        </div>
+      </div>
+    
+      <div class="control-group">
+        <label class="control-label" for="invited">Personas invitadas</label>
+        <div class="controls">
+          <input type="number" name="invited" required ngModel #invited="ngModel">
+          <div *ngIf="invited.invalid && (invited.dirty || invited.touched)" class="alert alert-danger">
+            <div *ngIf="invited.errors.required">
+              Invited is required.
+            </div>
+            <div *ngIf="invited.errors.minlength">
+              Please enter a valid invited
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Submit -->
+      <div class="control-group">
+        <div class="controls">
+          <button [disabled]="!f.valid" type="submit">
+            Submit
+          </button>
+        </div>
+      </div>
+    </fieldset>
+  </form>
+</section>
+
+<section class="content-page">
+  <div>
+    <ul class="guests-list">
+        <li *ngFor="let guest of guestsList$ | async">
+            <p>{{ guest.group }}</p>
+            <p>{{ guest.invited }}</p>
+            <p>{{ guest.notes }}</p>
+            <button mat-button >Edit</button>
+            <button mat-button>Delete</button>
+        </li>
+    </ul>
+  </div>
+  <div *ngIf="(guestsList$ | async)?.length < 1">
+    <p>No se encontraron resultados, vuelve a intentarlo.</p>
+  </div>
+</section>
+
+<footer-component></footer-component>

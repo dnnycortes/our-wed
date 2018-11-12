@@ -1,0 +1,11 @@
+@import "../../../assets/scss/helpers/variables";
+.content-page {
+  padding-top: 60px;
+  background: $secondary-color;
+  color: $main-color;
+
+  ul {
+      padding: 0;
+      margin: 0;
+  }
+}
