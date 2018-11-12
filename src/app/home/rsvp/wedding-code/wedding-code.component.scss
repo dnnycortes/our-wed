@@ -1,0 +1,25 @@
+@import "../../../../assets/scss/helpers/variables";
+
+:host {
+    .form-group {
+        display: flex;
+        flex-wrap: wrap;
+        text-align: left;
+        margin-bottom: 10px;
+        width: 100%;
+    
+        label, input {
+            width: 100%;
+        }
+    
+        label {
+            margin-bottom: $margin;
+        }
+    }
+    
+    button {
+        align-items: center;
+        display: flex;
+        margin: 0 auto;
+    }
+}

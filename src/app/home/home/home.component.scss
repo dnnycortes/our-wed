@@ -1,0 +1,96 @@
+@import "../../../assets/scss/helpers/variables";
+
+:host {
+    
+    .cover {
+        height: 100%;
+        position: relative;
+        text-align: center;
+        width: 100%;
+        background: {
+            attachment: fixed;
+            image: url('/assets/imgs/cover-back.png');
+            position: center center;
+            repeat: no-repeat;
+            size: cover;
+        }
+
+        .subtitle {
+            color: white;
+            font-size: 20px;
+            left: 0;
+            position: absolute;
+            right: 0;
+            text-transform: uppercase;
+            top: 40%;
+            z-index: 2;
+        }
+
+        .title {
+            color: white;
+            font-family: $logo-font;
+            font-size: 100px;
+            font-weight: normal;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 43%;
+            z-index: 2;
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+
+            .ornament {
+                background: url('/assets/imgs/line-bottom2.png');
+                background-repeat: no-repeat;
+                background-position: center;
+                display: inline-block;
+                height: 70px;
+                margin-top: $margin * 2;
+                width: 100%;
+            }
+        }
+
+        .overlay {
+            background: rgba( 0, 0, 0, .4 );
+            bottom: 0;
+            left: 0;
+            position: absolute;
+            right: 0;
+            top: 0;
+            z-index: 1;
+        }
+    }
+}
+
+@media screen and (max-width: $medium) {
+
+    :host {
+
+        .cover {
+
+            .title {
+                font-size: 80px;
+                padding: 0 10px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $small) {
+
+    :host {
+
+        .cover {
+
+            .title {
+                font-size: 47px;
+                top: 47%;
+            }
+
+            .subtitle {
+                top: 39%;
+            }
+        }
+    }
+}

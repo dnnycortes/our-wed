@@ -1,0 +1,36 @@
+<div>
+    <div class="rsvp">
+        <h2>Confirma tu asistencia</h2>
+        <slide-panel [activePane]="active" >
+            <div leftPane>
+                <wedding-code (guestInfo)="showRsvp($event);"></wedding-code>
+            </div>
+            <div rightPane class="confirmation">
+                <h3>{{ invitedGroup$?.group }}</h3>
+                <span></span>
+                <form [formGroup]="attendingForm">
+                    <div class="form-group">
+                        <label>¿Cuántos invitados asistirán?</label>
+                        <select formControlName="guestsAttending">
+                            <option value="0"> - Selecciona - </option>
+                            <option *ngFor="let invited of numberOfInvited"> {{ invited }}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label>Déjanos una nota</label>
+                        <textarea formControlName="notes" cols="30" rows="10"></textarea>
+                    </div>
+                    <div #alert></div>
+                    <div class="actions">
+                        <button type="button" class="btn-cancel" (click)="cancel()">Lo siento, no podré asistir</button>
+                        <button type="button" (click)="confirm()">Confirmar asistencia</button>
+                    </div>
+                </form>
+            </div>
+            <div thirdPane class="thanks">
+                <p *ngIf="thank">Gracias por confirmar tu asistencia. <br> ¡Estamos muy emocionados de verte en nuestra boda!</p>
+                <p *ngIf="sorry">Sentimos mucho que no puedas asistir a nuestra boda, esperamos verte pronto.</p>
+            </div>
+        </slide-panel>
+    </div>
+</div>
