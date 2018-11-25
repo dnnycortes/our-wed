@@ -1,4 +1,4 @@
-import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
+import { Component, ViewChild, ElementRef } from '@angular/core';
 
 
 @Component({
@@ -13,12 +13,10 @@ export class HomeComponent {
     @ViewChild('saveTheDate') saveTheDate: ElementRef;
     @ViewChild('location') location: ElementRef;
     @ViewChild('rsvp') rsvp;
-    ceremony: string;
-    reception: string;
 
     scrollTo( event ) {
         switch ( event ) {
-            case 'home': 
+            case 'home':
                 this.home.nativeElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
                 break;
             case 'save-the-date':
@@ -31,10 +29,5 @@ export class HomeComponent {
                 this.rsvp.nativeElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
                 break;
         }
-    }
-
-    ngOnInit() {
-        this.ceremony = 'https://goo.gl/maps/g4aJJs5isrF2';
-        this.reception = 'https://goo.gl/maps/dXfvajwyPR62';
     }
 }

@@ -1,0 +1,128 @@
+@import '../../../assets/scss/helpers/variables';
+
+:host {
+
+    .wedding-details {
+        background: $main-color;
+        color: white;
+        text-align: center;
+        padding: $padding * 6 0;
+
+        img {
+            margin-bottom: 25px;
+            width: 40%;
+        }
+
+        h2 {
+            font-family: $cursive-font;
+            font-size: 41px;
+            font-weight: normal;
+            margin: 0;
+            margin-bottom: $margin;
+        }
+
+        .main-details  {
+            display: flex;
+            flex-wrap: wrap;
+
+            .detail {
+                padding: 0 1%;
+                width: 48%;
+
+                img {
+                    border-radius: 50%;
+                    width: 60%;
+                }
+
+                h4 {
+                    color: white;
+                    font-family: $highlight-font;
+                    font-size: 28px;
+                }
+
+                p {
+                    font-size: 15px;
+                    margin-bottom: 10px;
+                }
+
+                .where, .time {
+
+                    i {
+                        font-size: 16px;
+                    }
+                }
+
+                .time {
+                    font-family: $highlight-font;
+                    font-size: 20px;
+                    margin-top: 20px;
+                }
+
+                a {
+                    color: $secondary-color;
+                    line-height: 35px;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $medium) {
+
+    :host {
+
+        .wedding-details {
+
+            .main-details {
+
+                .detail {
+                    margin-bottom: $margin * 3;
+                    width: 100%;
+
+                    img {
+                        margin-bottom: 0;
+                        width: 30%;
+                    }
+
+                    h4 {
+                        margin: 15px 0;
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: $small) {
+
+    :host {
+
+        .wedding-details {
+            padding: 50px 0;
+
+            img {
+                width: 80%;
+            }
+
+            h2 {
+                font-size: 30px;
+            }
+
+            .main-details {
+
+                .detail {
+                    margin-bottom: 65px;
+
+                    img {
+                        width: 55%;
+                    }
+
+                    h4 {
+                        font-size: 21px;
+                        margin: 20px 0;
+                    }
+                }
+            }
+        }
+    }
+}

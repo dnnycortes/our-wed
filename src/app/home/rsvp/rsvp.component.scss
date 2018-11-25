@@ -1,4 +1,4 @@
-@import "../../../../assets/scss/helpers/variables";
+@import "../../../assets/scss/helpers/variables";
 
 :host {
 
@@ -30,33 +30,6 @@
             margin: 0;
             margin-bottom: $margin;
         }
-
-        p {
-            margin: 0;
-            margin-bottom: $margin * 2;
-        }
-
-        .form-group {
-            display: flex;
-            flex-wrap: wrap;
-            text-align: left;
-            margin-bottom: 10px;
-            width: 100%;
-
-            label, input {
-                width: 100%;
-            }
-
-            label {
-                margin-bottom: $margin;
-            }
-        }
-
-        button {
-            align-items: center;
-            display: flex;
-            margin: 0 auto;
-        }
     }
 
     .confirmation {
@@ -85,7 +58,18 @@
         }
 
         .form-group {
+            display: flex;
+            flex-wrap: wrap;
             margin-bottom: $margin;
+            text-align: left;
+
+            label, input {
+                width: 100%;
+            }
+
+            label {
+                margin-bottom: $margin;
+            }
 
             select {
                 width: 100%;
@@ -94,7 +78,7 @@
             textarea {
                 max-height: 65px;
                 resize: none;
-                width: 100%;
+                width: 94%;
             }
         }
 
@@ -106,4 +90,33 @@
             }
         }
     }
+
+    .thanks {
+
+        p {
+            margin-top: $margin * 2;
+            font-size: 16px;
+        }
+    }
+}
+
+@media screen and ( max-width: $small ) {
+
+    :host {
+
+        > div {
+            height: 550px;
+        }
+
+        .rsvp {
+            height: 430px;
+            padding: 20px;
+            width: 90%;
+    
+            h2 {
+                font-size: 35px;
+            }
+        }
+    }
+
 }

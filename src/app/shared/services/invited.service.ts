@@ -15,14 +15,20 @@ export class InvitedService {
     ) { }
 
     getInvitedGroup( id ) {
-        return this.afs.doc( `invited/${id}` ).snapshotChanges()
-                .map( a => {
-                    if ( a.payload.exists ) {
-                        const data = a.payload.data();
-                        return data;
-                    } else {
-                        return null;
-                    }
-                });
+        return this.afs.doc( `invited/${id}` )
+            .ref
+            .get()
+            .then( a => {
+                return a.data();
+            })
+            .catch( error => {
+                return null;
+            });
+    }
+
+    updateInvitedGroup( id, data ) {
+        return this.afs.doc( `invited/${id}` ).update(
+            data
+        );
     }
 }

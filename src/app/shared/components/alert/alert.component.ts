@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 
 @Component({
@@ -8,15 +8,6 @@ import { Component, OnInit } from '@angular/core';
 })
 
 
-export class AlertComponent implements OnInit {
-
+export class AlertComponent {
     message: string;
-    type: string;
-
-
-    ngOnInit() {
-        console.log( this.message );
-        console.log( this.type );
-    }
-
 }
