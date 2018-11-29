@@ -18,12 +18,15 @@ import { GuestsService } from './guests.service';
     AngularFirestoreModule,
     MaterialModule,
     FormsModule,
-    ReactiveFormsModule,
+    ReactiveFormsModule
   ],
   declarations: [
     GuestsComponent,
-    HeaderComponent,
     FooterComponent,
+    HeaderComponent
+  ],
+  entryComponents: [
+  //  HeaderComponent
   ],
   providers: [
     GuestsService

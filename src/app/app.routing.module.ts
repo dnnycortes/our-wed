@@ -13,10 +13,6 @@ const routes: Routes = [
         loadChildren: './home/home.module#HomeModule'
     },
     {
-        path: 'rsvp',
-        loadChildren: './rsvp/rsvp.module#RsvpModule'
-    },
-    {
         path: 'admin/transactions',
         loadChildren: './admin/transactions/transactions.module#TransactionsModule'
     },

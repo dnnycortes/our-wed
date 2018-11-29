@@ -26,11 +26,16 @@ export class GuestsService {
       });
   }
 
-  getInvited( id ) {
-      return this.afs.doc( 'invited/' + id );
-  }
-
-  newGuest(newGuest) {
+  createGuest(newGuest) {
     return this.afs.collection("invited").add(newGuest);
   }
+
+  updateGuest(guest) {
+    return this.afs.collection("invited").doc(guest.id).update(guest);
+  }
+
+  deleteGuest(idGuest) {
+    return this.afs.collection("invited").doc(idGuest).delete();
+  }
+
 }

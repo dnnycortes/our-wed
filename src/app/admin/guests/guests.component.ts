@@ -2,7 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GuestsService } from './guests.service';
 import { Observable } from 'rxjs';
-import { NgForm } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
+import { group } from '@angular/animations';
 
 @Component({
   selector: 'app-guests',
@@ -16,42 +17,67 @@ export class GuestsComponent implements OnInit {
   guestEntity;
   public showLoader: boolean = false;
   public showError: string = '';
-  constructor( private guestsService: GuestsService, private dialog: MatDialog ) { }
 
+  guestGroupForm = this.formBuilder.group({
+    invited: [0, [Validators.required, Validators.min(1)]],
+    group: ['', [Validators.required,Validators.minLength(4)]],
+    id: [null]
+  });
+
+  constructor(
+    private guestsService: GuestsService,
+    private dialog: MatDialog,
+    private formBuilder: FormBuilder
+  ) {    
+  }
+  
 
   ngOnInit(): void {
       this.getGuestsList( this._startAt, this._endAt );
   }
 
-
   getGuestsList( start, end ): void {
-      this.guestsList$ = this.guestsService.getGuestsList( start, end );
+    this.guestsList$ = this.guestsService.getGuestsList( start, end )
   }
 
-  deleteGuest( start, end ): void {
-    this.guestsService.deleteGuest(newGuest).then((data)=>{
-      console.log('deleted');
+  deleteGuest( { id } ): void {
+    this.showLoader = true;
+    this.guestsService.deleteGuest(id).then(()=>{
+      this.showLoader = false;
     });
   }
 
-  onSubmitNewGuest(f: NgForm) {
-    if(f.valid){
-      const dateRegistered = new Date();
-      const newGuest = {
-        date: dateRegistered.toUTCString(),
-        group: f.value.group,
-        invited: f.value.invited,
-        guestsAttending: 0,
-        notes:''
-      };
-      this.showLoader = true;
-      this.guestsService.newGuest(newGuest).then((data)=>{
-        this.showLoader = false;
-      }).catch((error)=>{
-          this.showError = error;
-        }
-      );
-    }
-}
+  setGuestGroup(guest): void {
+    this.guestGroupForm.patchValue(guest);
+  }
 
+  onSubmitNewGuest() {
+    if (this.guestGroupForm.valid) {
+      const { invited, group: groupName, id } = this.guestGroupForm.value;
+      const dateRegistered = new Date();
+
+      this.showLoader = true;
+      const guest = {
+        date: dateRegistered.toUTCString(),
+        group: groupName,
+        invited,
+        notes: '',
+        ...((id) ? { id } : { guestsAttending: 0 })
+      }
+      const successResponse = () => {
+        this.showLoader = false;
+        this.guestGroupForm.reset();
+        this.guestGroupForm.setValue({
+          invited: 0,
+          group: ''
+        });
+      }
+      const errorResponse = (error) => {
+        this.showError = error;
+      }
+
+      (!id) ? this.guestsService.createGuest(guest).then(successResponse).catch(errorResponse)
+        : this.guestsService.updateGuest(guest).then(successResponse).catch(errorResponse);
+    }
+  }
 }

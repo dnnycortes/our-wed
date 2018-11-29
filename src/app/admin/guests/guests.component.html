@@ -1,21 +1,32 @@
 <header-component (submitted)="scrollTo($event)"></header-component>
-<div *ngIf="showLoader">
-    <p>Cargando...</p>
+<div *ngIf="showLoader" class="spinner-ow-overlay">
+    <mat-spinner class="spinner-ow" *ngIf="showLoader">
+    </mat-spinner>
 </div>
 <section class="content-page new-element">
-  <form #f="ngForm" (ngSubmit)="onSubmitNewGuest(f)" novalidate>
+  <form [formGroup]="guestGroupForm" (ngSubmit)="onSubmitNewGuest(f)" novalidate>
     <fieldset>
       <div class="control-group">
         <label class="control-label" for="group">
           Familia
         </label>
         <div class="controls">
-          <input ngModel type="text" name="group" placeholder="" class="input-xlarge" required minlength="4" #group="ngModel">
-          <div *ngIf="group.invalid && (group.dirty || group.touched)" class="alert alert-danger">
-            <div *ngIf="group.errors.required">
+          <input 
+            type="text" 
+            formControlName="group"
+            placeholder="" 
+            class="input-xlarge"
+            required
+            minlength="4" 
+          >
+          <div
+            *ngIf="guestGroupForm.get( 'group' ).hasError && guestGroupForm.get('group').touched"
+            class="alert alert-danger"
+          >
+            <div *ngIf="guestGroupForm.get( 'group' ).hasError('required')">
               Group is required.
             </div>
-            <div *ngIf="group.errors.minlength">
+            <div *ngIf="guestGroupForm.get( 'group' ).hasError('minlength')">
               Please enter a valid group
             </div>
           </div>
@@ -23,14 +34,22 @@
       </div>
     
       <div class="control-group">
-        <label class="control-label" for="invited">Personas invitadas</label>
+        <label class="control-label" for="invited">
+          Personas invitadas
+        </label>
         <div class="controls">
-          <input type="number" name="invited" required ngModel #invited="ngModel">
-          <div *ngIf="invited.invalid && (invited.dirty || invited.touched)" class="alert alert-danger">
-            <div *ngIf="invited.errors.required">
+          <input
+            type="number"
+            formControlName="invited"
+            >      
+          <div
+            *ngIf="guestGroupForm.get( 'invited' ).hasError && guestGroupForm.get('invited').touched"
+            class="alert alert-danger"
+          >
+            <div *ngIf="guestGroupForm.get( 'invited' ).hasError('required')">
               Invited is required.
             </div>
-            <div *ngIf="invited.errors.minlength">
+            <div *ngIf="guestGroupForm.get( 'invited' ).hasError('min')">
               Please enter a valid invited
             </div>
           </div>
@@ -40,7 +59,7 @@
       <!-- Submit -->
       <div class="control-group">
         <div class="controls">
-          <button [disabled]="!f.valid" type="submit">
+          <button  type="submit" [disabled]="!guestGroupForm.valid">
             Submit
           </button>
         </div>
@@ -56,8 +75,8 @@
             <p>{{ guest.group }}</p>
             <p>{{ guest.invited }}</p>
             <p>{{ guest.notes }}</p>
-            <button mat-button >Edit</button>
-            <button mat-button>Delete</button>
+            <button mat-button (click)="setGuestGroup(guest)">Edit</button>
+            <button mat-button (click)="deleteGuest(guest)">Delete</button>
         </li>
     </ul>
   </div>
