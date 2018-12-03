@@ -12,7 +12,8 @@ export class HomeComponent {
     @ViewChild('home') home: ElementRef;
     @ViewChild('saveTheDate') saveTheDate: ElementRef;
     @ViewChild('location') location: ElementRef;
-    @ViewChild('rsvp') rsvp;
+    @ViewChild('rsvp') rsvp: ElementRef;
+    @ViewChild('giftRegistry') giftRegistry: ElementRef;
 
     scrollTo( event ) {
         switch ( event ) {
@@ -27,6 +28,9 @@ export class HomeComponent {
                 break;
             case 'rsvp':
                 this.rsvp.nativeElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+                break;
+            case 'gift-registry':
+                this.giftRegistry.nativeElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
                 break;
         }
     }

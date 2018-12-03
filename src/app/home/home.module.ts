@@ -15,6 +15,7 @@ import { InvitedService } from '../shared/services/invited.service';
 import { WeddingCodeComponent } from './rsvp/wedding-code/wedding-code.component';
 import { SaveTheDateComponent } from './save-the-date/save-the-date.component';
 import { LocationComponent } from './location/location.component';
+import { GiftRegistryComponent } from './gift-registry/gift-registry.component';
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import { LocationComponent } from './location/location.component';
         AlertComponent,
         WeddingCodeComponent,
         SaveTheDateComponent,
-        LocationComponent
+        LocationComponent,
+        GiftRegistryComponent
     ],
     entryComponents: [
         AlertComponent

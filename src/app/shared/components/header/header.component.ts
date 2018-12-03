@@ -4,8 +4,9 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 const MENU_ITEMS: Array<Object> = [
     { label: 'Home', alias: 'home' },
     { label: 'Fecha', alias: 'save-the-date' },
-    { label: 'Lugar', alias:'location' },
-    { label: 'RSVP', alias: 'rsvp' }
+    { label: 'Lugar', alias: 'location' },
+    { label: 'RSVP', alias: 'rsvp' },
+    { label: 'Mesa de regalos', alias: 'gift-registry' }
 ];
 
 
