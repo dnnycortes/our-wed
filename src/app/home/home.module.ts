@@ -7,7 +7,6 @@ import { AngularFirestoreModule } from 'angularfire2/firestore';
 import { HomeRouting } from './home.routing';
 import { HomeComponent } from './home/home.component';
 import { HeaderComponent } from '../shared/components/header/header.component';
-import { FooterComponent } from '../shared/components/footer/footer.component';
 import { CountdownComponent } from './save-the-date/countdown/countdown.component';
 import { RsvpComponent } from './rsvp/rsvp.component';
 import { SlidePanelComponent } from '../shared/components/slide-panel/slide-panel.component';
@@ -29,7 +28,6 @@ import { LocationComponent } from './location/location.component';
     declarations: [
         HomeComponent,
         HeaderComponent,
-        FooterComponent,
         CountdownComponent,
         RsvpComponent,
         SlidePanelComponent,

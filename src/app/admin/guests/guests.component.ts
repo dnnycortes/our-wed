@@ -2,26 +2,36 @@ import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { GuestsService } from './guests.service';
 import { Observable } from 'rxjs';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, Validators, FormGroup, FormControl} from '@angular/forms';
 import { group } from '@angular/animations';
 
+
 @Component({
-  selector: 'app-guests',
+  selector: 'guests',
   templateUrl: './guests.component.html',
   styleUrls: ['./guests.component.scss']
 })
+
+
 export class GuestsComponent implements OnInit {
   guestsList$: Observable<any>;
-  private _startAt: String = '';
-  private _endAt: String = this._startAt + '\uf8ff';
-  guestEntity;
   public showLoader: boolean = false;
   public showError: string = '';
+  guestStates = [
+    {label: 'Todos'},
+    {label: 'Confirmados'},
+    {label: 'No confirmados'}
+  ];
 
   guestGroupForm = this.formBuilder.group({
-    invited: [0, [Validators.required, Validators.min(1)]],
+    invited: ['', [Validators.required, Validators.min(1)]],
     group: ['', [Validators.required,Validators.minLength(4)]],
-    id: [null]
+    id: [null],
+    registra: []
+  });
+
+  filtersGuest = new FormGroup({
+    guestState: new FormControl(this.guestStates[0]),
   });
 
   constructor(
@@ -33,11 +43,18 @@ export class GuestsComponent implements OnInit {
   
 
   ngOnInit(): void {
-      this.getGuestsList( this._startAt, this._endAt );
-  }
+    const {guestState} = this.filtersGuest.value
+    let attending;
+    switch(guestState.label){
+      case 'Confirmados':
+        attending = true
+      break;
+      case 'No confirmados':
+        attending = false;
+      break;        
+    }
 
-  getGuestsList( start, end ): void {
-    this.guestsList$ = this.guestsService.getGuestsList( start, end )
+    this.guestsList$ = this.guestsService.getGuestsList({attending});
   }
 
   deleteGuest( { id } ): void {
@@ -53,7 +70,7 @@ export class GuestsComponent implements OnInit {
 
   onSubmitNewGuest() {
     if (this.guestGroupForm.valid) {
-      const { invited, group: groupName, id } = this.guestGroupForm.value;
+      const { invited, group: groupName, id, registra } = this.guestGroupForm.value;
       const dateRegistered = new Date();
 
       this.showLoader = true;
@@ -62,8 +79,10 @@ export class GuestsComponent implements OnInit {
         group: groupName,
         invited,
         notes: '',
-        ...((id) ? { id } : { guestsAttending: 0 })
+        registra,
+        ...((id) ? { id } : { guestsAttending: 0, attending: false })
       }
+
       const successResponse = () => {
         this.showLoader = false;
         this.guestGroupForm.reset();
@@ -72,6 +91,7 @@ export class GuestsComponent implements OnInit {
           group: ''
         });
       }
+
       const errorResponse = (error) => {
         this.showError = error;
       }

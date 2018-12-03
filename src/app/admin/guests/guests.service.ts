@@ -14,10 +14,16 @@ export class GuestsService {
     private afs: AngularFirestore,
     ) { }
 
-  getGuestsList( start, end) {
-      this.guestsRef = this.afs.collection( 'invited', ref => ref.orderBy( 'group' ) );
+  getGuestsList({attending}) {
 
-      return this.guestsRef.snapshotChanges().map(actions => {
+      const whereQuery = (attending !== undefined) ?
+        ref => ref.orderBy( 'group' ).where('attending', '==', attending) :
+        ref => ref.orderBy( 'group' );
+
+      this.guestsRef = this.afs.collection( 'invited', whereQuery);
+    
+
+      return this.guestsRef.stateChanges().map(actions => {
           return actions.map( a => {
               const data = a.payload.doc.data();
               const id = a.payload.doc.id;
@@ -25,9 +31,19 @@ export class GuestsService {
           });
       });
   }
+  private _generatePassword(): string {
+    const chars = '123456789ABCDEFGHJKMNPQRSTUVWXTZ';
+    const passwordLength = 5;
+    let password = '';
+    for (let i=0; i<passwordLength; i++) {
+        let rnum = Math.floor(Math.random() * chars.length);
+        password += chars.substring(rnum,rnum+1);
+    }
+    return password;
+  }
 
   createGuest(newGuest) {
-    return this.afs.collection("invited").add(newGuest);
+    return this.afs.collection("invited").doc(this._generatePassword()).set(newGuest);
   }
 
   updateGuest(guest) {
