@@ -16,7 +16,7 @@ import { WeddingCodeComponent } from './rsvp/wedding-code/wedding-code.component
 import { SaveTheDateComponent } from './save-the-date/save-the-date.component';
 import { LocationComponent } from './location/location.component';
 import { GiftRegistryComponent } from './gift-registry/gift-registry.component';
-
+import { FooterComponent } from '../shared/components/footer/footer.component';
 
 @NgModule({
     imports: [
@@ -29,6 +29,7 @@ import { GiftRegistryComponent } from './gift-registry/gift-registry.component';
     declarations: [
         HomeComponent,
         HeaderComponent,
+        FooterComponent,
         CountdownComponent,
         RsvpComponent,
         SlidePanelComponent,
