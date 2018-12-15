@@ -15,7 +15,8 @@ import { InvitedService } from '../shared/services/invited.service';
 import { WeddingCodeComponent } from './rsvp/wedding-code/wedding-code.component';
 import { SaveTheDateComponent } from './save-the-date/save-the-date.component';
 import { LocationComponent } from './location/location.component';
-
+import { GiftRegistryComponent } from './gift-registry/gift-registry.component';
+import { FooterComponent } from '../shared/components/footer/footer.component';
 
 @NgModule({
     imports: [
@@ -28,13 +29,15 @@ import { LocationComponent } from './location/location.component';
     declarations: [
         HomeComponent,
         HeaderComponent,
+        FooterComponent,
         CountdownComponent,
         RsvpComponent,
         SlidePanelComponent,
         AlertComponent,
         WeddingCodeComponent,
         SaveTheDateComponent,
-        LocationComponent
+        LocationComponent,
+        GiftRegistryComponent
     ],
     entryComponents: [
         AlertComponent

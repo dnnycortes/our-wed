@@ -1,0 +1,28 @@
+@import "../../../assets/scss/helpers/variables";
+
+:host {
+
+    .gift-registry {
+        padding: $padding * 8 0;
+        text-align: center;
+
+        img {
+            margin-bottom: 25px;
+            width: 33%;
+        }
+
+        h2 {
+            font-family: $logo-font;
+            font-size: 45px;
+            font-weight: normal;
+            margin: 0;
+            margin-bottom: $margin * 2;
+        }
+
+        p {
+            font-size: 15px;
+            line-height: 25px;
+            margin-bottom: $margin * 2;
+        }
+    }
+}

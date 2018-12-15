@@ -1,11 +1,13 @@
-button {
+button, .btn {
     background: $main-color;
     border: 0;
     border-radius: 4px;
     color: white;
     cursor: pointer;
+    display: inline-block;
     font-size: 15px;
     padding: 10px $padding;
+    text-decoration: none;
 
     &.btn-cancel {
         background: lighten( $text-color, 50% );
