@@ -13,8 +13,12 @@ const routes: Routes = [
         loadChildren: './home/home.module#HomeModule'
     },
     {
-        path: 'transactions',
-        loadChildren: './transactions/transactions.module#TransactionsModule'
+        path: 'admin/transactions',
+        loadChildren: './admin/transactions/transactions.module#TransactionsModule'
+    },
+    {
+        path: 'admin/guests',
+        loadChildren: './admin/guests/guests.module#GuestsModule'
     },
     {
         path: '**',

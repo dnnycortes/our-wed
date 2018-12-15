@@ -7,11 +7,13 @@ import { AngularFireModule } from 'angularfire2';
 import { environment } from '../environments/environment';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app.routing.module';
+import { FooterComponent } from './shared/components/footer/footer.component';
 
 
 @NgModule({
     declarations: [
-        AppComponent
+        AppComponent,
+        FooterComponent
     ],
     imports: [
         AngularFireModule.initializeApp( environment.firebase ),
