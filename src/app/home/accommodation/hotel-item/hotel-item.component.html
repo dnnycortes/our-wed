@@ -1,0 +1,16 @@
+<div class="slide">
+    <div class="hotel" *ngFor="let hotel of hotels;">
+        <img src="{{hotel.image}}" alt="">
+        <div class="info">
+            <h3>{{hotel.name}}</h3>
+            <p><b>Costo aprox: </b>
+                <span>${{hotel.price}} MXN / noche</span>
+            </p>
+            <p><b>Distancia:</b> {{hotel.distance}}</p>
+            <div class="buttons">
+                <a href="{{hotel.location}}" target="_blank">Ver ubicación</a> |
+                <a href="{{hotel.reservation}}" target="_blank">Reservar</a>
+            </div>
+        </div>
+    </div>
+</div>

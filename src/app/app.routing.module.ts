@@ -2,15 +2,11 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
 
-const routes: Routes = [
+const routes: Routes = [    
     {
         path: '',
-        redirectTo: '/home',
+        loadChildren: './home/home.module#HomeModule',
         pathMatch: 'full'
-    },
-    {
-        path: 'home',
-        loadChildren: './home/home.module#HomeModule'
     },
     {
         path: 'admin/transactions',

@@ -7,7 +7,7 @@ button, .btn {
     display: inline-block;
     font-size: 15px;
     padding: 10px $padding;
-    text-decoration: none;
+    text-decoration: none;    
 
     &.btn-cancel {
         background: lighten( $text-color, 50% );
@@ -19,5 +19,10 @@ button, .btn {
 
     &:hover {
         background: darken( $main-color, 10% );
+    }
+    
+    &.btn--blue {
+        background: $secondary-color;
+        color: $main-color;
     }
 }
