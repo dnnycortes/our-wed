@@ -3,46 +3,73 @@ $admin-table-primary: #FFF;
 $admin-table-secondary: #E2E2E2;
 
 .admin-list {
-  tr:nth-child(odd) {
-    background: $admin-table-primary;
+  border-collapse: collapse;
+  margin-bottom: $margin;
+  width: 100%;
+
+  td, th {
+    padding: 5px 10px;
   }
-  tr:nth-child(even) {
-    background: $admin-table-secondary;
+
+  td {
+    color: $secondary-color;
+  }
+
+  th {
+    border-bottom: 2px solid #ccc;
+    text-align: left;
+  }
+
+  tr {
+    background: white;
+    border-bottom: 1px solid #ccc;
+  }
+
+  .actions {
+    text-align: center;
+
+    button {
+      margin: 0 5px;
+
+      &:hover {
+        background: transparent;
+      }
+    }
+  }
+}
+
+.content-page {
+
+  fieldset {
+    margin-bottom: $margin * 2;
   }
 }
 
 .admin-form {
+
   .control-group {
     padding-top: $padding;
   }
+
   .alert-danger {
     color: red;
   }
 }
 
-  .content-page {
-    background: $secondary-color;
-    color: $main-color;
-    padding-top: $padding * 5;
-    ul {
-        padding: 0;
-        margin: 0;
-    }  
-  }
-  .spinner-ow-overlay {
-    background: white;
-    width: 100%;
-    height: 100%;
-    opacity: .5;
+.spinner-ow-overlay {
+  background: white;
+  width: 100%;
+  height: 100%;
+  opacity: .5;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 1000;
+
+  .spinner-ow {
     position: fixed;
-    left: 0;
-    top: 0;
-    z-index: 1000;
-  
-    .spinner-ow {
-      position: fixed;
-      left: 50%;
-      top: 50%;
-    }
-    
+    left: 50%;
+    top: 50%;
   }
+  
+}
