@@ -1,0 +1,53 @@
+@import "../../../../assets/scss/helpers/variables";
+
+:host {
+    .slide {
+        background: $main-color;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+        min-height: 350px;
+
+        .hotel {
+            background: white;
+            border-radius: 5px;
+            width: 22%;
+
+            img {
+                border-radius: 5px 5px 0 0;
+                margin-bottom: 0;
+                width: 100%;
+            }
+
+            .info {
+                padding: $padding;
+                text-align: left;
+
+                h3 {
+                    margin: 0;
+                    margin-bottom: $margin;
+                    font-size: 17px;
+                }
+
+                p {
+                    color: $secondary-color;
+                    margin-bottom: 5px;
+                    width: 100%;
+
+                    span {
+                        color: lighten( black, 50% );
+                    }
+                }
+
+                .buttons {
+                    margin-top: 10px;
+
+                    a {
+                        color: $main-color;
+                        display: inline-block;
+                    }
+                }
+            }
+        }
+    }
+}

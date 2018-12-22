@@ -1,0 +1,30 @@
+<div class="accommodation">
+    <div class="container">
+        <img src="assets/imgs/flowers-deco-1.png" alt="">
+        <h2>Alojamientos</h2>
+        <h4>Hoteles</h4>
+        <p>
+            Te compartimos algunas sugerencias de hospedaje próximas a la <b>Hacienda San Andrés</b> donde celebraremos nuestra boda, recuerda reservar con anticipación para que tengas una mejor disponibilidad y que encuentres un mejor precio</p>
+        <ui-carousel [infinite]="false" [fade]="false" [speed]="200" [autoPlay]="false" height="350px" [dots]="false">
+            <div class="hotel" *ngFor="let hotelIndex of getHotelsSlides(); ">
+                <ui-carousel-item>
+                        <hotel-item-component [hotels]="getHotelArray(hotelIndex-3,hotelIndex)"></hotel-item-component>
+                </ui-carousel-item>
+            </div>
+        </ui-carousel>
+
+        <h4>Airbnb</h4>
+        <p>
+            Puedes encontrar excelentes lugares en Airbnb cerca de nuestro evento,
+            si necesitas asesoria no dudes en contactarnos.
+        </p>
+        <a
+            class="btn btn--blue"
+            href="{{airnbWishList}}"
+            target="_blank"
+            type="button"
+        >
+            Ir a lista de sugerencias
+        </a>
+    </div>
+</div>
