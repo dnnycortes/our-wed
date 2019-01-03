@@ -32,7 +32,7 @@ export class GuestsService {
       });
   }
   private _generatePassword(): string {
-    const chars = '123456789ABCDEFGHJKMNPQRSTUVWXTZ';
+    const chars = '2346789ABCDEFGHJKMNPQRSTUVWXTZ';
     const passwordLength = 5;
     let password = '';
     for (let i=0; i<passwordLength; i++) {

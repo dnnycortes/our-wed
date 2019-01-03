@@ -7,6 +7,12 @@
         <span class="ornament"></span>
     </p>
     <div class="overlay"></div>
+    <a (click)="scrollTo('save-the-date')" class="btn btn-down">scroll down</a>
+    <ui-carousel [infinite]="true" [fade]="true" [speed]="2000" [dots]="false" height="100%">
+        <ui-carousel-item *ngFor="let item of carousel">
+            <img src="{{item.src}}">
+        </ui-carousel-item>
+    </ui-carousel>
 </section>
 
 <section #saveTheDate>
@@ -25,7 +31,9 @@
     <gift-registry></gift-registry>
 </section>
 
-<accommodation></accommodation>
+<section #accommodation>
+    <accommodation></accommodation>
+</section>
 
 
 <footer-component></footer-component>

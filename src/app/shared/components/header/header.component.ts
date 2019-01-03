@@ -5,8 +5,9 @@ const MENU_ITEMS: Array<Object> = [
     { label: 'Home', alias: 'home' },
     { label: 'Fecha', alias: 'save-the-date' },
     { label: 'Lugar', alias: 'location' },
-    { label: 'RSVP', alias: 'rsvp' },
-    { label: 'Mesa de regalos', alias: 'gift-registry' }
+    { label: 'Confirmar asistencia', alias: 'rsvp' },
+    { label: 'Mesa de regalos', alias: 'gift-registry' },
+    { label: 'Hospedaje', alias: 'accommodation' }
 ];
 
 
@@ -24,7 +25,7 @@ export class HeaderComponent implements OnInit {
 
     @Output() submitted: EventEmitter<any> = new EventEmitter<any>();
 
-    constructor() { 
+    constructor() {
         this._menuItems = MENU_ITEMS;
     }
 
@@ -34,6 +35,7 @@ export class HeaderComponent implements OnInit {
 
     onScroll( value ) {
         this.submitted.emit( value );
+        console.log( value );
     }
 
     changeHeaderClass() {

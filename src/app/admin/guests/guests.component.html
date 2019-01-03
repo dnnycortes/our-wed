@@ -126,7 +126,9 @@
         <th>Id/Clave</th>
         <th>Grupo de invitados</th>
         <th>Numero de Invitados</th>
+        <th>Confirmados</th>
         <th>Registro</th>
+        <th>Attending</th>
         <th>Notas</th>
         <th>Acciones</th>
       </tr>
@@ -134,7 +136,10 @@
         <td>{{ guest.id }}</td>
         <td>{{ guest.group }}</td>
         <td>{{ guest.invited }}</td>
+        <td>{{ guest.guestsAttending }}</td>
         <td>{{ guest.registra }}</td>
+        <td>{{ guest.attending }}</td>
+        
         <td>{{ guest.notes }}</td>
         <td>
           <button mat-button (click)="setGuestGroup(guest)">Edit</button>
