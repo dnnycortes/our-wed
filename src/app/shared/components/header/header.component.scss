@@ -10,7 +10,7 @@
         -webkit-transition: all .3s ease-in;
         transition: all .3s ease-in;
         width: 96%;
-        z-index: 3;
+        z-index: 51;
 
         h1 {
             color: white;
@@ -30,7 +30,7 @@
 
         nav {
             margin-left: auto;
-            width: 30%;
+            width: 50%;
 
             ul {
                 display: flex;
@@ -41,12 +41,12 @@
                 padding: 0;
 
                 li {
+                    font-size: 13px;
 
                     a {
                         color: white;
                         cursor: pointer;
                         display: block;
-                        font-weight: bold;
                         line-height: 60px;
                         text-decoration: none;
                         text-transform: uppercase;
@@ -98,13 +98,25 @@
     }
 }
 
+@media screen and ( max-width: $exrta-large ) {
+    :host {
+
+        header {
+
+            nav {
+                width: 55%;
+            }
+        }
+    }
+}
+
 @media screen and ( max-width: $large ) {
     :host {
 
         header {
     
             nav {
-                width: 60%;
+                width: 72%;
             }
         }
     }

@@ -1,0 +1,52 @@
+@import "../../../assets/scss/helpers/variables";
+
+:host {
+
+    .accommodation {
+        background: $main-color;
+        padding: $padding * 6 0;
+        text-align: center;
+    }
+
+    img {
+        margin-bottom: $margin;
+        width: 30%;
+    }
+
+    h2 {
+        font-family: $logo-font;
+        font-size: 45px;
+        font-weight: normal;
+        color: white;
+        margin: 0;
+        margin-bottom: $margin * 2;
+    }
+
+    h4 {
+        color: white;
+        font-family: $highlight-font;
+        font-size: 28px;
+    }
+
+    p {
+        color: white;
+        font-weight: lighter;
+        margin: 0 auto;
+        margin-bottom: $margin * 5;
+        width: 58%;
+    }
+
+    ui-carousel{
+        display: block;
+        margin: 0 auto;
+    }
+
+    ui-carousel-item {
+        .ui-carousel-item {
+            background: $main-color !important;
+        }
+        .ui-carousel-item[_ngcontent-c13]{
+            background: $main-color !important;
+        }
+    }
+}

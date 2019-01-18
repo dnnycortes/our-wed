@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AngularFirestoreModule } from 'angularfire2/firestore';
+import { UICarouselModule } from 'ui-carousel';
 
 import { HomeRouting } from './home.routing';
 import { HomeComponent } from './home/home.component';
@@ -17,6 +18,9 @@ import { SaveTheDateComponent } from './save-the-date/save-the-date.component';
 import { LocationComponent } from './location/location.component';
 import { GiftRegistryComponent } from './gift-registry/gift-registry.component';
 import { FooterComponent } from '../shared/components/footer/footer.component';
+import { AccommodationComponent } from './accommodation/accommodation.component';
+import { HotelItemComponent } from './accommodation/hotel-item/hotel-item.component';
+
 
 @NgModule({
     imports: [
@@ -24,7 +28,8 @@ import { FooterComponent } from '../shared/components/footer/footer.component';
         FormsModule,
         ReactiveFormsModule,
         HomeRouting,
-        AngularFirestoreModule
+        AngularFirestoreModule,
+        UICarouselModule
     ],
     declarations: [
         HomeComponent,
@@ -37,7 +42,9 @@ import { FooterComponent } from '../shared/components/footer/footer.component';
         WeddingCodeComponent,
         SaveTheDateComponent,
         LocationComponent,
-        GiftRegistryComponent
+        GiftRegistryComponent,
+        HotelItemComponent,
+        AccommodationComponent
     ],
     entryComponents: [
         AlertComponent

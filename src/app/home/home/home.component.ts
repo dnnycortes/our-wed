@@ -1,5 +1,10 @@
-import { Component, ViewChild, ElementRef } from '@angular/core';
+import { Component, ViewChild, ElementRef, OnInit } from '@angular/core';
 
+const gallery = [
+    { src: '/assets/imgs/cover-back.png' },
+    { src: '/assets/imgs/cover-back2.png' },
+    { src: '/assets/imgs/cover-back3.png' }
+];
 
 @Component({
     selector: 'app-home',
@@ -8,12 +13,18 @@ import { Component, ViewChild, ElementRef } from '@angular/core';
 })
 
 
-export class HomeComponent {
+export class HomeComponent implements OnInit {
+    carousel: Array<any>;
     @ViewChild('home') home: ElementRef;
     @ViewChild('saveTheDate') saveTheDate: ElementRef;
     @ViewChild('location') location: ElementRef;
     @ViewChild('rsvp') rsvp: ElementRef;
     @ViewChild('giftRegistry') giftRegistry: ElementRef;
+    @ViewChild('accommodation') accommodation: ElementRef;
+
+    ngOnInit() {
+        this.carousel = gallery;
+    }
 
     scrollTo( event ) {
         switch ( event ) {
@@ -31,6 +42,9 @@ export class HomeComponent {
                 break;
             case 'gift-registry':
                 this.giftRegistry.nativeElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
+                break;
+            case 'accommodation':
+                this.accommodation.nativeElement.scrollIntoView( { behavior: 'smooth', block: 'start' } );
                 break;
         }
     }

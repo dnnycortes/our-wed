@@ -2,6 +2,40 @@
 $admin-table-primary: #FFF;
 $admin-table-secondary: #E2E2E2;
 
+.container {
+  padding: $padding 0;
+}
+
+.admin-form {
+  align-items: flex-end;
+  border: 1px solid #ccc;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin-bottom: $margin;
+  padding: $padding;
+
+  .control-group {
+    width: 30%;
+
+    &.submit {
+      width: inherit;
+    }
+  }
+
+  .controls {
+    width: 100%;
+  }
+
+  input[type="text"], input[type="number"] {
+    width: 93%;
+  }
+
+  .alert-danger {
+    color: red;
+  }
+}
+
 .admin-list {
   border-collapse: collapse;
   margin-bottom: $margin;
@@ -17,12 +51,17 @@ $admin-table-secondary: #E2E2E2;
 
   th {
     border-bottom: 2px solid #ccc;
+    font-weight: bolder;
     text-align: left;
   }
 
   tr {
     background: white;
     border-bottom: 1px solid #ccc;
+  }
+
+  .notes {
+    width: 220px;
   }
 
   .actions {
@@ -36,23 +75,19 @@ $admin-table-secondary: #E2E2E2;
       }
     }
   }
-}
 
-.content-page {
+  .attending {
 
-  fieldset {
-    margin-bottom: $margin * 2;
-  }
-}
+    > div {
+      background-color: $color-warning;
+      border-radius: 15px;
+      color: white;
+      text-align: center;
+    }
 
-.admin-form {
-
-  .control-group {
-    padding-top: $padding;
-  }
-
-  .alert-danger {
-    color: red;
+    .true {
+      background: $color-success;
+    }
   }
 }
 
