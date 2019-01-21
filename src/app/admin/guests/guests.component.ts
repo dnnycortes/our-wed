@@ -17,6 +17,12 @@ export class GuestsComponent implements OnInit {
   guestsList$: Observable<any>;
   public showLoader: boolean = false;
   public showError: string = '';
+  public guests = {
+    total: 0,
+    confirmed: 0,
+    cancelled: 0
+  };
+
   guestStates = [
     {label: 'Todos'},
     {label: 'Confirmados'},
@@ -26,6 +32,7 @@ export class GuestsComponent implements OnInit {
   guestGroupForm = this.formBuilder.group({
     invited: ['', [Validators.required, Validators.min(1)]],
     group: ['', [Validators.required,Validators.minLength(4)]],
+    comment: [''],
     id: [null],
     registra: []
   });
@@ -55,6 +62,18 @@ export class GuestsComponent implements OnInit {
     }
 
     this.guestsList$ = this.guestsService.getGuestsList({attending});
+    this.guestsList$.subscribe((list) => {
+      this.guests.total = list.reduce((valorAnterior,{invited})=>{
+        return valorAnterior+invited},0);
+        
+      this.guests.confirmed = list.reduce((valorAnterior,{guestsAttending, attending})=>{
+        const sum = attending ? parseInt(guestsAttending) : 0;
+        return valorAnterior + sum },0);
+
+      this.guests.cancelled = list.reduce((valorAnterior,{invited, attending})=>{
+          const sum = attending === false ? parseInt(invited) : 0;
+          return valorAnterior + sum },0);
+    });
   }
 
   deleteGuest( { id } ): void {
@@ -70,7 +89,7 @@ export class GuestsComponent implements OnInit {
 
   onSubmitNewGuest() {
     if (this.guestGroupForm.valid) {
-      const { invited, group: groupName, id, registra } = this.guestGroupForm.value;
+      const { invited, group: groupName, id, registra, comment } = this.guestGroupForm.value;
       const dateRegistered = new Date();
 
       this.showLoader = true;
@@ -78,9 +97,11 @@ export class GuestsComponent implements OnInit {
         date: dateRegistered.toUTCString(),
         group: groupName,
         invited,
+        comment,
         notes: '',
         registra,
-        ...((id) ? { id } : { guestsAttending: 0, attending: false })
+        ...((id) ? { id } : { guestsAttending: 0, attending: null }),
+        attending: null
       }
 
       const successResponse = () => {

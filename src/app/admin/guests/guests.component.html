@@ -64,6 +64,21 @@
                     </div>
                 </div>
             </div>
+
+            <div class="control-group">
+                <label class="control-label" for="group">
+                    Comentario
+                </label>
+                <div class="controls">
+                    <input
+                        type="text" 
+                        formControlName="comment"
+                        placeholder=""
+                        class="input-xlarge"
+                    />
+                </div>
+            </div>
+            
             <div class="control-group">
                 <label class="control-label" for="invited">
                 Personas invitadas
@@ -97,6 +112,13 @@
     </section>
     <section class="content-page">
         <div>
+            <h1>Total de invitados: {{guests.total}}</h1>
+            <h1>Total de confirmados {{guests.confirmed}}</h1>
+            <h1>Total de cancelados {{guests.cancelled}}</h1>
+        </div>
+    </section>
+    <section class="content-page">
+        <div>
             <fieldset>
                 <form [formGroup]="filtersGuest">
                     <div class="control-group">
@@ -120,6 +142,7 @@
                     <th>Registro</th>
                     <th>Asistencia</th>
                     <th class="notes">Notas</th>
+                    <th>Comentarios</th>
                     <th class="actions">Acciones</th>
                 </tr>
                 <tr *ngFor="let guest of guestsList$ | async">
@@ -132,6 +155,7 @@
                         <div [ngClass]="{ true: guest.attending == true }">{{ guest.attending }}</div>
                     </td>
                     <td>{{ guest.notes }}</td>
+                    <td>{{ guest.comment }}</td>
                     <td class="actions">
                         <button mat-button (click)="setGuestGroup(guest)"><i class="material-icons">create</i>Edit</button>
                         <button mat-button (click)="deleteGuest(guest)"><i class="material-icons">delete</i>Delete</button>
