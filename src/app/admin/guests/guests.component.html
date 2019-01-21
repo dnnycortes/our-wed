@@ -1,154 +1,170 @@
-<div *ngIf="showLoader" class="spinner-ow-overlay">
-  <mat-spinner class="spinner-ow" *ngIf="showLoader">
-  </mat-spinner>
-</div>
-<section class="content-page">
-  <form
-    [formGroup]="guestGroupForm"
-    (ngSubmit)="onSubmitNewGuest(f)" novalidate
-    class="admin-form"
-  >
-  <fieldset>
-    <div class="control-group">
-      <label class="control-label" for="registra">
-        Registra
-      </label>
-      <div class="controls">
-        Dany
-          <input
-          type="radio"
-          formControlName="registra"
-          name="registra"
-          required
-          value="Dany"
-        >
-      </div>
-      <div class="controls">
-          Jaime
-            <input
-            type="radio"
-            formControlName="registra"
-            name="registra"
-            value="Jaime"
-            required
-          >
-        </div>
-        <div
-            *ngIf="guestGroupForm.get( 'registra' ).hasError"
-            class="alert alert-danger"
-          >
-            <div *ngIf="guestGroupForm.get( 'registra' ).hasError('required')">
-              Group is required.
-            </div>
-          </div>
+<div class="container">
+    <div *ngIf="showLoader" class="spinner-ow-overlay">
+        <mat-spinner class="spinner-ow" *ngIf="showLoader"></mat-spinner>
     </div>
-      <div class="control-group">
-        <label class="control-label" for="group">
-          Familia
-        </label>
-        <div class="controls">
-          <input
-            type="text"
-            formControlName="group"
-            placeholder=""
-            class="input-xlarge"
-            required minlength="4"
-          >
-          <div
-            *ngIf="guestGroupForm.get( 'group' ).hasError && guestGroupForm.get('group').touched"
-            class="alert alert-danger"
-          >
-            <div *ngIf="guestGroupForm.get( 'group' ).hasError('required')">
-              Group is required.
+    <section class="content-page">
+        <form
+            [formGroup]="guestGroupForm"
+            (ngSubmit)="onSubmitNewGuest(f)" novalidate
+            class="admin-form"
+        >
+            <div class="control-group">
+                <label class="control-label" for="registra">Registra</label>
+                <div class="controls">
+                    Dany
+                    <input
+                        type="radio"
+                        formControlName="registra"
+                        name="registra"
+                        required
+                        value="Dany"
+                    >
+                </div>
+                <div class="controls">
+                    Jaime
+                    <input
+                        type="radio"
+                        formControlName="registra"
+                        name="registra"
+                        value="Jaime"
+                        required
+                    >
+                </div>
+                <div
+                    *ngIf="guestGroupForm.get( 'registra' ).hasError"
+                    class="alert alert-danger"
+                >
+                    <div *ngIf="guestGroupForm.get( 'registra' ).hasError('required')">
+                        Group is required.
+                    </div>
+                </div>
             </div>
-            <div *ngIf="guestGroupForm.get( 'group' ).hasError('minlength')">
-              Please enter a valid group
+            <div class="control-group">
+                <label class="control-label" for="group">
+                Familia
+                </label>
+                <div class="controls">
+                    <input
+                        type="text"
+                        formControlName="group"
+                        placeholder=""
+                        class="input-xlarge"
+                        required minlength="4"
+                    >
+                    <div
+                        *ngIf="guestGroupForm.get( 'group' ).hasError && guestGroupForm.get('group').touched"
+                        class="alert alert-danger"
+                    >
+                        <div *ngIf="guestGroupForm.get( 'group' ).hasError('required')">
+                        Group is required.
+                        </div>
+                        <div *ngIf="guestGroupForm.get( 'group' ).hasError('minlength')">
+                        Please enter a valid group
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <div class="control-group">
-        <label class="control-label" for="invited">
-          Personas invitadas
-        </label>
-        <div class="controls">
-          <input
-            type="number"
-            formControlName="invited"
-            class="input-xlarge">
-          <div
-            *ngIf="guestGroupForm.get( 'invited' ).hasError && guestGroupForm.get('invited').touched"
-            class="alert alert-danger">
-            <div *ngIf="guestGroupForm.get( 'invited' ).hasError('required')">
-              Invited is required.
+            <div class="control-group">
+                <label class="control-label" for="group">
+                    Comentario
+                </label>
+                <div class="controls">
+                    <input
+                        type="text" 
+                        formControlName="comment"
+                        placeholder=""
+                        class="input-xlarge"
+                    />
+                </div>
             </div>
-            <div *ngIf="guestGroupForm.get( 'invited' ).hasError('min')">
-              Please enter a valid invited
+            
+            <div class="control-group">
+                <label class="control-label" for="invited">
+                Personas invitadas
+                </label>
+                <div class="controls">
+                    <input
+                        type="number"
+                        formControlName="invited"
+                        class="input-xlarge">
+                    <div
+                        *ngIf="guestGroupForm.get( 'invited' ).hasError && guestGroupForm.get('invited').touched"
+                        class="alert alert-danger">
+                        <div *ngIf="guestGroupForm.get( 'invited' ).hasError('required')">
+                        Invited is required.
+                        </div>
+                        <div *ngIf="guestGroupForm.get( 'invited' ).hasError('min')">
+                        Please enter a valid invited
+                        </div>
+                    </div>
+                </div>
             </div>
-          </div>
-        </div>
-      </div>
 
-      <!-- Submit -->
-      <div class="control-group">
-        <div class="controls">
-          <button type="submit" [disabled]="!guestGroupForm.valid">
-            Submit
-          </button>
+            <div class="control-group submit">
+                <div class="controls">
+                    <button type="submit" [disabled]="!guestGroupForm.valid">
+                        Submit
+                    </button>
+                </div>
+            </div>
+        </form>
+    </section>
+    <section class="content-page">
+        <div>
+            <h1>Total de invitados: {{guests.total}}</h1>
+            <h1>Total de confirmados {{guests.confirmed}}</h1>
+            <h1>Total de cancelados {{guests.cancelled}}</h1>
         </div>
-      </div>
-    </fieldset>
-  </form>
-</section>
-
-<section class="content-page">
-  <div>
-    <fieldset>
-      <form [formGroup]="filtersGuest">
-        <div class="control-group">
-          <label class="control-label" for="invited">
-            Filtros
-          </label>
-          <div class="controls">
-            <select formControlName="guestState">
-              <option *ngFor="let state of guestStates" [ngValue]="guestState">
-                {{ state.label }}
-              </option>
-            </select>
-          </div>
+    </section>
+    <section class="content-page">
+        <div>
+            <fieldset>
+                <form [formGroup]="filtersGuest">
+                    <div class="control-group">
+                        <label class="control-label" for="invited">Filtros</label>
+                        <div class="controls">
+                            <select formControlName="guestState">
+                                <option *ngFor="let state of guestStates" [ngValue]="guestState">
+                                {{ state.label }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </form>
+            </fieldset>
+            <table class="admin-list">
+                <tr>
+                    <th>Id/Clave</th>
+                    <th>Grupo de invitados</th>
+                    <th>Numero de Invitados</th>
+                    <th>Confirmados</th>
+                    <th>Registro</th>
+                    <th>Asistencia</th>
+                    <th class="notes">Notas</th>
+                    <th>Comentarios</th>
+                    <th class="actions">Acciones</th>
+                </tr>
+                <tr *ngFor="let guest of guestsList$ | async">
+                    <td>{{ guest.id }}</td>
+                    <td>{{ guest.group }}</td>
+                    <td>{{ guest.invited }}</td>
+                    <td>{{ guest.guestsAttending }}</td>
+                    <td>{{ guest.registra }}</td>
+                    <td class="attending">
+                        <div [ngClass]="{ true: guest.attending == true }">{{ guest.attending }}</div>
+                    </td>
+                    <td>{{ guest.notes }}</td>
+                    <td>{{ guest.comment }}</td>
+                    <td class="actions">
+                        <button mat-button (click)="setGuestGroup(guest)"><i class="material-icons">create</i>Edit</button>
+                        <button mat-button (click)="deleteGuest(guest)"><i class="material-icons">delete</i>Delete</button>
+                    </td>
+                </tr>
+            </table>
         </div>
-      </form>
-    </fieldset>
-
-    <table class="admin-list guests-list">
-      <tr>
-        <th>Id/Clave</th>
-        <th>Grupo de invitados</th>
-        <th>Numero de Invitados</th>
-        <th>Confirmados</th>
-        <th>Registro</th>
-        <th>Attending</th>
-        <th>Notas</th>
-        <th>Acciones</th>
-      </tr>
-      <tr *ngFor="let guest of guestsList$ | async">
-        <td>{{ guest.id }}</td>
-        <td>{{ guest.group }}</td>
-        <td>{{ guest.invited }}</td>
-        <td>{{ guest.guestsAttending }}</td>
-        <td>{{ guest.registra }}</td>
-        <td>{{ guest.attending }}</td>
-        
-        <td>{{ guest.notes }}</td>
-        <td>
-          <button mat-button (click)="setGuestGroup(guest)">Edit</button>
-          <button mat-button (click)="deleteGuest(guest)">Delete</button>
-        </td>
-      </tr>
-    </table>
-  </div>
-  <div *ngIf="(guestsList$ | async)?.length < 1">
-    <p>No se encontraron resultados, vuelve a intentarlo.</p>
-  </div>
-</section>
+        <div *ngIf="(guestsList$ | async)?.length < 1">
+            <p>No se encontraron resultados, vuelve a intentarlo.</p>
+        </div>
+    </section>
+</div>
