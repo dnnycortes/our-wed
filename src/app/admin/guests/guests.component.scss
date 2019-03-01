@@ -88,6 +88,11 @@ $admin-table-secondary: #E2E2E2;
     .true {
       background: $color-success;
     }
+
+    .pending {
+      background: yellow;
+      color: black;
+    }
   }
 }
 

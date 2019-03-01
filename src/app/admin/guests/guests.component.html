@@ -155,7 +155,9 @@
                     <td>{{ guest.guestsAttending }}</td>
                     <td>{{ guest.registra }}</td>
                     <td class="attending">
-                        <div [ngClass]="{ true: guest.attending == true }">{{ guest.attending }}</div>
+                        <div [ngClass]="{ true: guest.attending === true, pending: guest.attending == null }">
+                            {{ guest.attending === null ? 'Pending' : guest.attending }}
+                        </div>
                     </td>
                     <td>{{ guest.notes }}</td>
                     <td>{{ guest.comment }}</td>
