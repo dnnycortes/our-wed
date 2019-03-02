@@ -20,7 +20,8 @@ export class GuestsComponent implements OnInit {
   public guests = {
     total: 0,
     confirmed: 0,
-    cancelled: 0
+    cancelled: 0,
+    pending: 0
   };
 
   guestStates = [
@@ -63,16 +64,29 @@ export class GuestsComponent implements OnInit {
 
     this.guestsList$ = this.guestsService.getGuestsList({attending});
     this.guestsList$.subscribe((list) => {
-      this.guests.total = list.reduce((valorAnterior,{invited})=>{
-        return valorAnterior+invited},0);
-        
-      this.guests.confirmed = list.reduce((valorAnterior,{guestsAttending, attending})=>{
-        const sum = attending ? parseInt(guestsAttending) : 0;
-        return valorAnterior + sum },0);
+      this.guests.total = list.reduce((valorAnterior,{invited,registra})=>{
+        return {...valorAnterior, [registra]:valorAnterior[registra]+invited}},{Dany:0, Jaime:0});
 
-      this.guests.cancelled = list.reduce((valorAnterior,{invited, attending})=>{
+      const attendingDetail = list.reduce(
+      (valorAnterior,{guestsAttending, attending, invited}) => {
+        const confirmedSum = attending ? parseInt(guestsAttending) : 0;
+        const cancelledSum = attending ? parseInt(invited) - parseInt(guestsAttending) : 0;
+ 
+        return {
+          confirmed: valorAnterior.confirmed + confirmedSum,
+          cancelled: valorAnterior.cancelled + cancelledSum
+        }
+      }, {confirmed:0, cancelled:0});
+      this.guests.confirmed =  attendingDetail.confirmed;
+
+      this.guests.cancelled = attendingDetail.cancelled + list.reduce(
+        (valorAnterior, {group, invited, attending}) => {
           const sum = attending === false ? parseInt(invited) : 0;
-          return valorAnterior + sum },0);
+          return valorAnterior + sum
+        }
+        ,0);
+
+      this.guests.pending = (this.guests.total['Dany'] + this.guests.total['Jaime']) - this.guests.confirmed - this.guests.cancelled;
     });
   }
 
@@ -98,10 +112,8 @@ export class GuestsComponent implements OnInit {
         group: groupName,
         invited,
         comment,
-        notes: '',
         registra,
-        ...((id) ? { id } : { guestsAttending: 0, attending: null }),
-        attending: null
+        ...((id) ? { id } : { guestsAttending: 0, attending: null })
       }
 
       const successResponse = () => {

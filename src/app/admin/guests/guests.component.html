@@ -112,9 +112,12 @@
     </section>
     <section class="content-page">
         <div>
-            <h1>Total de invitados: {{guests.total}}</h1>
-            <h1>Total de confirmados {{guests.confirmed}}</h1>
-            <h1>Total de cancelados {{guests.cancelled}}</h1>
+            <h1>Total de invitados: {{guests.total.Dany + guests.total.Jaime}}</h1>
+            <h1>Total de confirmados: {{guests.confirmed}}</h1>
+            <h1>Total de cancelados: {{guests.cancelled}}</h1>
+            <h1>Total de pendientes por confirmar: {{guests.pending}}</h1>
+            <h1>Invitados Jaime: {{guests.total.Jaime}}</h1>
+            <h1>Invitados Dany: {{guests.total.Dany}}</h1>
         </div>
     </section>
     <section class="content-page">
@@ -152,7 +155,9 @@
                     <td>{{ guest.guestsAttending }}</td>
                     <td>{{ guest.registra }}</td>
                     <td class="attending">
-                        <div [ngClass]="{ true: guest.attending == true }">{{ guest.attending }}</div>
+                        <div [ngClass]="{ true: guest.attending === true, pending: guest.attending == null }">
+                            {{ guest.attending === null ? 'Pending' : guest.attending }}
+                        </div>
                     </td>
                     <td>{{ guest.notes }}</td>
                     <td>{{ guest.comment }}</td>
